@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
-import React, { useState } from 'react';
+import React from 'react';
 import Home from "./Home";
 import Data from "./Data";
 import Todo from "./Todo";
@@ -18,17 +18,6 @@ import {
   Link
 } from "react-router-dom";
 
-
-// function setToken(userToken) {
-//   sessionStorage.setItem('token', JSON.stringify(userToken));
-// }
-
-// function getToken() {
-//   const tokenString = sessionStorage.getItem('token');
-//   const userToken = JSON.parse(tokenString);
-//   return userToken?.token
-// }
-
 const App = () => {
 
   const { token, setToken } = useToken();
@@ -42,23 +31,6 @@ const App = () => {
     <Navbar />
     <Container>
       <div>
-        {/* <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/Login">Se connecter</Link>
-            </li>
-            <li>
-              <Link to="/Data">Mes données</Link>
-            </li>
-            <li>
-              <Link to="/Todo">Tâches</Link>
-            </li>
-          </ul>
-        </nav> */}
-
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
