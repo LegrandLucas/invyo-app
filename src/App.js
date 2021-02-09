@@ -5,6 +5,8 @@ import Home from "./Home";
 import Data from "./Data";
 import Todo from "./Todo";
 import Login from "./Login";
+import Navbar from './components/Navbar'
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,6 +17,7 @@ import {
 const App = () => {
   return (
     <Router>
+    <Navbar />
       <div>
         <nav>
           <ul>
