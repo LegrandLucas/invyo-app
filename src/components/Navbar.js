@@ -23,6 +23,11 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
+const logout = () => {
+  localStorage.clear();
+  window.location.reload();
+}
+
 const Navbar = () => {
   const classes = useStyles();
 
@@ -43,7 +48,7 @@ const Navbar = () => {
                   <Link  className={classes.linkStyles} to="/Todo">Mes tâches</Link>
                 </Grid>
                 <Grid item>
-                <Link className={classes.linkStyles} to="/" >Se déconecter</Link>
+                <Link className={classes.linkStyles} to="/" onClick={() => logout()}>Se déconecter</Link>
                 </Grid>
               </Grid>
           </Typography>
