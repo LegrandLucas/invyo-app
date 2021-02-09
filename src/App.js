@@ -1,9 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 import React from "react";
-import Datas from "./Datas";
-import Tasks from "./Tasks";
 import Home from "./Home";
+import Data from "./Data";
+import Todo from "./Todo";
+import Login from "./Login";
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,10 +22,13 @@ const App = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/Datas">Mes données</Link>
+              <Link to="/Login">Se connecter</Link>
             </li>
             <li>
-              <Link to="/Tasks">Tâches</Link>
+              <Link to="/Data">Mes données</Link>
+            </li>
+            <li>
+              <Link to="/Todo">Tâches</Link>
             </li>
           </ul>
         </nav>
@@ -32,11 +36,14 @@ const App = () => {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/datas">
-            <Datas />
+          <Route path="/data">
+            <Data />
           </Route>
-          <Route path="/tasks">
-            <Tasks />
+          <Route path="/todo">
+            <Todo />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
           <Route path="/">
             <Home />
