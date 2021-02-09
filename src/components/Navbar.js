@@ -23,29 +23,38 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
+const logout = () => {
+  localStorage.clear();
+  window.location.reload();
+}
+
 const Navbar = () => {
   const classes = useStyles();
 
 
   return (
-    <AppBar position="sticky">
-      <Toolbar xs={12}>
-        <Typography className={classes.typographyStyles}>
-          <h1 xs={2} >Invyo App</h1>
-            <Grid container className={classes.gridStyles} xs={10} spacing={2}>
-              <Grid item>
-                <Link  className={classes.linkStyles} to="/Data">Articles</Link>
+    <nav>
+      <AppBar position="sticky" color="primary">
+        <Toolbar xs={12}>
+          <Typography className={classes.typographyStyles}>
+            <h1 xs={2}>
+              <Link className={classes.linkStyles} to="/">Invy App</Link>
+            </h1>
+              <Grid container className={classes.gridStyles} xs={10} spacing={2}>
+                <Grid item>
+                  <Link  className={classes.linkStyles} to="/Data">Articles</Link>
+                </Grid>
+                <Grid item>
+                  <Link  className={classes.linkStyles} to="/Todo">Mes tâches</Link>
+                </Grid>
+                <Grid item>
+                <Link className={classes.linkStyles} to="/" onClick={() => logout()}>Se déconecter</Link>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Link  className={classes.linkStyles} to="/Todo">Mes tâches</Link>
-              </Grid>
-              <Grid item>
-                <Link  className={classes.linkStyles} to="/Login">Se connecter</Link>
-              </Grid>
-            </Grid>
-        </Typography>
-      </Toolbar>
+          </Typography>
+        </Toolbar>
       </AppBar>
+    </nav>
   )
 }
 
