@@ -31,7 +31,9 @@ const Navbar = () => {
     <AppBar position="sticky">
       <Toolbar xs={12}>
         <Typography className={classes.typographyStyles}>
-          <h1 xs={2} >Invyo App</h1>
+          <h1 xs={2}>
+            <Link className={classes.linkStyles} to="/">Invy App</Link>
+          </h1>
             <Grid container className={classes.gridStyles} xs={10} spacing={2}>
               <Grid item>
                 <Link  className={classes.linkStyles} to="/Data">Articles</Link>
