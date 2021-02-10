@@ -35,22 +35,20 @@ const Navbar = () => {
   return (
     <nav>
       <AppBar position="sticky" color="primary">
-        <Toolbar xs={12}>
+        <Toolbar>
           <Typography className={classes.typographyStyles}>
-            <h1 xs={2}>
-              <Link className={classes.linkStyles} to="/">Invy App</Link>
-            </h1>
-              <Grid container className={classes.gridStyles} xs={10} spacing={2}>
-                <Grid item>
-                  <Link  className={classes.linkStyles} to="/Data">Articles</Link>
-                </Grid>
-                <Grid item>
-                  <Link  className={classes.linkStyles} to="/Todo">Mes tâches</Link>
-                </Grid>
-                <Grid item>
-                <Link className={classes.linkStyles} to="/" onClick={() => logout()}>Se déconecter</Link>
-                </Grid>
+            <Link className={classes.linkStyles} to="/">Invy App</Link>
+            <Grid container className={classes.gridStyles} spacing={2}>
+              <Grid item>
+                <Link  className={classes.linkStyles} to="/Data">Articles</Link>
               </Grid>
+              <Grid item>
+                <Link  className={classes.linkStyles} to="/Todo">Mes tâches</Link>
+              </Grid>
+              <Grid item>
+              <Link className={classes.linkStyles} to="/" onClick={() => logout()}>Se déconecter</Link>
+              </Grid>
+            </Grid>
           </Typography>
         </Toolbar>
       </AppBar>
