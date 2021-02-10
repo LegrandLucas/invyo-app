@@ -15,17 +15,16 @@ const Data = () => {
     root: {
       flexGrow: 1,
     },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    },
+
+    topGrid: {
+      margin: "40px 0px"
+    }
   }));
 
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={classes.topGrid}>
       <Grid container spacing={3}>
         <Grid item xs={3}>
           <Typography variant="body1">Titre</Typography>
@@ -43,7 +42,7 @@ const Data = () => {
           <Typography variant="body1">Actions</Typography>
     </Grid>
     </Grid>
-      {invyoData.articles.slice(0, 5).map((article, index) =>
+      {invyoData.articles.slice(0, 10).map((article, index) =>
       <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={3}>
