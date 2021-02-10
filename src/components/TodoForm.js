@@ -21,32 +21,49 @@ const TodoForm = ({ saveTodos }) => {
     e.preventDefault();
     allTodos = [...todos, todo]
     setTodos(allTodos);
-    saveTodos(todos)
+    saveTodos(todos);
+    setTitle('');
+    setDescription('');
+    setDate('');
   }
+
+  const getTheStatut = (todoDeadline) => {
+    let today = new Date();
+    let day = String(today.getDate()).padStart(2, '0');
+    let month = String(today.getMonth() + 1).padStart(2, '0');
+    let year = today.getFullYear();
+
+    const nums = todoDeadline.split("-")
+    const total = (nums[0] - year, nums[1] - month, nums[2] - day)
+
+    total <= 0 ? setStatut("done") : setStatut("doing")
+  }
+
 
   useEffect(() => {
     saveTodos(todos);
+    getTheStatut(date)
   }, [allTodos]);
 
   return (
     <form noValidate onSubmit={handleSubmit}>
       <TextField
+        label="Add title"
         variant="outlined"
-        placeholder="Add title"
         margin="normal"
         onChange={e => setTitle(e.target.value)}
         value={title}
       />
       <TextField
+        label="Add description"
         variant="outlined"
-        placeholder="Add description"
         margin="normal"
         onChange={e => setDescription(e.target.value)}
         value={description}
       />
       <TextField
-        id="date"
         label="Date"
+        id="date"
         type="date"
         defaultValue="2021-01-01"
         InputLabelProps={{
@@ -56,7 +73,13 @@ const TodoForm = ({ saveTodos }) => {
         value={date}
 
       />
-      <Select
+      <TextField
+        label="Statut"
+        variant="outlined"
+        margin="normal"
+        value={statut}
+      />
+      {/* <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         value={statut}
@@ -64,7 +87,7 @@ const TodoForm = ({ saveTodos }) => {
       >
         <MenuItem value={"doing"}>En cours</MenuItem>
         <MenuItem value={"done"}>Terminé</MenuItem>
-      </Select>
+      </Select> */}
       <Button
         type="submit"
         fullWidth
