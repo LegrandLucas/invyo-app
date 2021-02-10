@@ -1,88 +1,73 @@
 import React, { useState } from 'react';
-import { TextField, Select, MenuItem} from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
-
-
-const handleStatut = () => {
-  console.log("changement de statut")
-}
-
-
-const useStyles = makeStyles(() => ({
-  formStyles: {
-  display: "flex",
-  flexDirection: "column"
-  },
-}))
-
+import {TextField, Select, MenuItem, Button} from '@material-ui/core';
 
 const TodoForm = ({ saveTodo }) => {
-  const classes = useStyles();
+  // const [value, setValue] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [statut, setStatut] = useState('');
   const [date, setDate] = useState('');
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [statut, setStatut] = useState('');
+  const [todos, setTodos] = useState();
+
+  const todo =  {
+    title,
+    description,
+    date,
+    statut
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setTodos(todo);
+    console.log(todos)
+  }
 
   return (
-    <form
-      className={classes.formStyles}
-      onSubmit={(event) => {
-        event.preventDefault();
-        setTitle('');
-        setDescription('');
-        setStatut('');
-        setDate('');
-      }}
-    >
+    <form noValidate onSubmit={handleSubmit}>
       <TextField
         variant="outlined"
-        placeholder="Add todo"
+        placeholder="Add title"
         margin="normal"
-        onChange={(event) => {
-          setTitle(event.target.value);
-        }}
+        onChange={e => setTitle(e.target.value)}
         value={title}
       />
       <TextField
         variant="outlined"
         placeholder="Add description"
         margin="normal"
-        onChange={(event) => {
-          setDescription(event.target.value);
-        }}
+        onChange={e => setDescription(e.target.value)}
         value={description}
       />
       <TextField
-        variant="outlined"
-        placeholder="Add date"
-        margin="normal"
-        onChange={(event) => {
-          setDate(event.target.value);
-        }}
-        value={date}
-      />
-      <TextField
         id="date"
-        label="Birthday"
+        label="Date"
         type="date"
-        defaultValue="2017-05-24"
-        className={classes.textField}
+        defaultValue="2021-01-01"
+        // className={classes.textField}
         InputLabelProps={{
           shrink: true,
         }}
+        onChange={e => setDate(e.target.value)}
+        value={date}
+
       />
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         value={statut}
-        onChange={() =>
-          handleStatut()
-        }
+        onChange={e => setStatut(e.target.value)}
       >
         <MenuItem value={"doing"}>En cours</MenuItem>
         <MenuItem value={"done"}>Terminé</MenuItem>
       </Select>
+      <Button
+        type="submit"
+        fullWidth
+        variant="contained"
+        color="primary"
+      >
+        Créer une tâche
+      </Button>
     </form>
   );
 };

@@ -6,11 +6,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 
-const TodoList = ({ todos, editTodo, deleteTodo }) => (
+const TodoList = ({ todos, deleteTodo }) => (
   <List>
-    {/* {todos.map((todo, index) => (
+    {todos.map((todo, index) => (
       <ListItem key={index.toString()} dense button>
         <Checkbox tabIndex={-1} disableRipple />
         <ListItemText primary={todo} />
@@ -25,7 +24,7 @@ const TodoList = ({ todos, editTodo, deleteTodo }) => (
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
-    ))} */}
+    ))}
   </List>
 );
 

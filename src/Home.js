@@ -8,9 +8,18 @@ const Home = () => {
   return (
     <div>
       <h1>Ajouter une tâche:</h1>
-      <TodoForm/>
+      <TodoForm
+        saveTodo={(titre, description) => {
+          console.log(titre, description);
+          // const trimmedText = todoText.trim();
+
+          // if (trimmedText.length > 0) {
+          //   setTodos([...todos, trimmedText]);
+          // }
+        }}
+      />
       <h1>Mes tâches:</h1>
-      <TodoList/>
+      <TodoList todos={todos}/>
     </div>
   )
 }
