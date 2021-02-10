@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {TextField, Select, MenuItem, Button} from '@material-ui/core';
 
-const TodoForm = ({ saveTodo }) => {
-  // const [value, setValue] = useState('');
+const TodoForm = ({ saveTodos }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
   const [statut, setStatut] = useState('');
-  const [todos, setTodos] = useState();
+  const [todos, setTodos] = useState([]);
+  let allTodos = []
+
 
   const todo =  {
     title,
@@ -18,9 +19,14 @@ const TodoForm = ({ saveTodo }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setTodos(todo);
-    console.log(todos)
+    allTodos = [...todos, todo]
+    setTodos(allTodos);
+    saveTodos(todos)
   }
+
+  useEffect(() => {
+    saveTodos(todos);
+  }, [allTodos]);
 
   return (
     <form noValidate onSubmit={handleSubmit}>
@@ -43,7 +49,6 @@ const TodoForm = ({ saveTodo }) => {
         label="Date"
         type="date"
         defaultValue="2021-01-01"
-        // className={classes.textField}
         InputLabelProps={{
           shrink: true,
         }}
