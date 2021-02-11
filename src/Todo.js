@@ -29,6 +29,8 @@ const Todo = () => {
       <TodoList todos={tasksDoing(saveTodos)} />
       <Button
         onClick={displayOld}
+        variant="contained"
+        color="primary"
       >Afficher les tâches terminées
       </Button>
       {old ?

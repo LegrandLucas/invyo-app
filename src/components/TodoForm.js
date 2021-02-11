@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import {TextField, Select, MenuItem, Button} from '@material-ui/core';
+import {TextField, Button} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 const TodoForm = ({ saveTodos }) => {
   const [title, setTitle] = useState('');
@@ -45,10 +47,21 @@ const TodoForm = ({ saveTodos }) => {
     getTheStatut(date)
   }, [allTodos]);
 
+  const useStyles = makeStyles((theme) => ({
+    form: {
+      display: "flex",
+      flexDirection: "column"
+    },
+  }));
+
+  const classes = useStyles();
+
+
   return (
-    <form noValidate onSubmit={handleSubmit}>
+    <form noValidate className={classes.form} onSubmit={handleSubmit}>
       <TextField
         label="Add title"
+        required
         variant="outlined"
         margin="normal"
         onChange={e => setTitle(e.target.value)}
@@ -56,6 +69,7 @@ const TodoForm = ({ saveTodos }) => {
       />
       <TextField
         label="Add description"
+        required
         variant="outlined"
         margin="normal"
         onChange={e => setDescription(e.target.value)}
@@ -63,6 +77,7 @@ const TodoForm = ({ saveTodos }) => {
       />
       <TextField
         label="Date"
+        required
         id="date"
         type="date"
         defaultValue="2021-01-01"
@@ -79,18 +94,8 @@ const TodoForm = ({ saveTodos }) => {
         margin="normal"
         value={statut}
       />
-      {/* <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        value={statut}
-        onChange={e => setStatut(e.target.value)}
-      >
-        <MenuItem value={"doing"}>En cours</MenuItem>
-        <MenuItem value={"done"}>Terminé</MenuItem>
-      </Select> */}
       <Button
         type="submit"
-        fullWidth
         variant="contained"
         color="primary"
       >
