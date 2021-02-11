@@ -37,7 +37,7 @@ const Navbar = () => {
       <AppBar position="sticky" color="primary">
         <Toolbar>
           <Typography className={classes.typographyStyles}>
-            <Link className={classes.linkStyles} to="/">Invy App</Link>
+            <Link className={classes.linkStyles} to="/">Invyo App</Link>
             <Grid container className={classes.gridStyles} spacing={2}>
               <Grid item>
                 <Link  className={classes.linkStyles} to="/Data">Articles</Link>
@@ -46,7 +46,7 @@ const Navbar = () => {
                 <Link  className={classes.linkStyles} to="/Todo">Mes tâches</Link>
               </Grid>
               <Grid item>
-              <Link className={classes.linkStyles} to="/" onClick={() => logout()}>Se déconecter</Link>
+              <Link className={classes.linkStyles} to="/" onClick={() => logout()}>Se déconnecter</Link>
               </Grid>
             </Grid>
           </Typography>
