@@ -133,9 +133,9 @@ const Data = () => {
 //
   return (
     <div className={classes.topGrid}>
-      <Grid container>
+      <Grid container spacing={2}>
         <Grid item xs={12}>
-          <FormControl className={classes.formControl}>
+          <FormControl className={classes.formControl} fullWidth>
           <TextField
             id="standard-basic"
             label="Rechercher une actualité"
@@ -144,7 +144,7 @@ const Data = () => {
           </FormControl>
         </Grid>
         <Grid item xs={3}>
-          <FormControl className={classes.formControl}>
+          <FormControl className={classes.formControl} fullWidth>
           <InputLabel id="topic">Choisir un topic</InputLabel>
           <Select
             labelId="topic"
@@ -159,7 +159,7 @@ const Data = () => {
           </FormControl>
         </Grid>
         <Grid item xs={3}>
-          <FormControl className={classes.formControl}>
+          <FormControl className={classes.formControl} fullWidth>
             <InputLabel id="language">Choisir une langue</InputLabel>
             <Select
               labelId="language"

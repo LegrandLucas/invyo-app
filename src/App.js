@@ -3,10 +3,8 @@ import './App.css';
 import React from 'react';
 import Home from "./Home";
 import Data from "./Data";
-import Data2 from "./Data2";
 import Todo from "./Todo";
 import Navbar from './components/Navbar'
-import Preferences from './components/Preferences'
 import Dashboard from './components/Dashboard'
 import Container from '@material-ui/core/Container';
 import Login from './components/Login';
@@ -16,7 +14,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 const App = () => {
@@ -32,20 +29,12 @@ const App = () => {
     <Navbar />
     <Container>
       <div>
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/preferences">
-            <Preferences />
-          </Route>
           <Route path="/dashboard">
             <Dashboard />
           </Route>
           <Route path="/data">
             <Data />
-          </Route>
-          <Route path="/data2">
-            <Data2 />
           </Route>
           <Route path="/todo">
             <Todo />
