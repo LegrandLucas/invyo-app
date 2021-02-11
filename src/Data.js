@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 
 const Data = () => {
 
-  // console.log(invyoData.articles.slice(0, 5).map((article) => article.Title))
+  console.log(invyoData.articles.slice(0, 5).map((article) => article))
   const data = invyoData.articles.slice(0, 10)
   const [articles, setArticles] = useState([])
 
@@ -18,15 +18,23 @@ const Data = () => {
   }, []);
 
 
-  const sortedByTitle = () => {
-    console.log("sort by title")
+  const sortByTitle = () => {
     data.sort(function (a, b) {
       if (a.Title < b.Title) { return -1; }
       if (a.Title > b.Title) { return 1; }
       return 0;
     })
     setArticles(data)
-  }
+  };
+
+  const sortByContent = () => {
+    data.sort(function (a, b) {
+      if (a.Content < b.Content) { return -1; }
+      if (a.Content > b.Content) { return 1; }
+      return 0;
+    })
+    setArticles(data)
+  };
 
 
   const useStyles = makeStyles((theme) => ({
@@ -45,10 +53,10 @@ const Data = () => {
     <div className={classes.topGrid}>
       <Grid container spacing={3}>
         <Grid item xs={3}>
-          <Typography variant="body1" onClick={() => sortedByTitle()}>Titre</Typography>
+          <Typography variant="body1" onClick={() => sortByTitle()}>Titre</Typography>
         </Grid>
         <Grid item xs={6}>
-        <Typography variant="body1">Contenu</Typography>
+        <Typography variant="body1" onClick={() => sortByContent()}>Contenu</Typography>
         </Grid>
         <Grid item xs={1}>
           <Typography variant="body1">Langues</Typography>
