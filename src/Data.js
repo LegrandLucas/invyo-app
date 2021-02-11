@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import invyoData from './data/data'
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import { Grid, Typography, Select, MenuItem, FormControl, InputLabel, TextField } from '@material-ui/core';
+
 
 
 const Data = () => {
@@ -11,8 +11,10 @@ const Data = () => {
 
   const [articles, setArticles] = useState([]);
   const [topics, setTopics] = useState([]);
-  const [selectedTopic, setSelectedTopic] = useState('');
+  const [selectedTopic, setSelectedTopic] = useState('Choisir des topic');
   const [selectedLanguage, setSelectedLanguage] = useState('');
+  const [searchInput, setSearchInput] = useState('');
+  const [keyword, setKeyword] = useState('');
 
 
   useEffect(() => {
@@ -90,6 +92,24 @@ const Data = () => {
   }
 //
 
+
+  const searchArticles = (input) => {
+    if (input === "") {
+      setArticles(data)
+    } else {
+      const filterdArticles = data.filter(obj => {
+        return (
+          obj.Content.toLowerCase().split(' ').includes(input.toLowerCase())
+          ||
+          obj.Title.toLowerCase().split(' ').includes(input.toLowerCase())
+        )
+      })
+      setArticles(filterdArticles)
+    }
+  }
+
+
+// styles
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -97,24 +117,65 @@ const Data = () => {
 
     topGrid: {
       margin: "40px 0px"
-    }
+    },
+
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    },
   }));
 
   const classes = useStyles();
-
+//
   return (
     <div className={classes.topGrid}>
-
-      <select onChange={e => topicSelection(e.target.value)} value={selectedTopic}>
-      {uniqueTopicList.map((topic) => (
-          <option key={topic} value={topic}>{topic}</option>
-        ))}
-      </select>
-      <select onChange={e => languageSelection(e.target.value)} value={selectedLanguage}>
-      {uniqueLanguageList.map((language) => (
-        <option key={language} value={language}>{language}</option>
-        ))}
-      </select>
+      <Grid container>
+        <Grid item xs={12}>
+          <FormControl className={classes.formControl}>
+          <TextField
+            id="standard-basic"
+            label="Rechercher une actualité"
+            onChange={e => searchArticles(e.target.value)}
+          />
+          </FormControl>
+        </Grid>
+        <Grid item xs={3}>
+          <FormControl className={classes.formControl}>
+          <InputLabel id="topic">Choisir un topic</InputLabel>
+          <Select
+            labelId="topic"
+            id="topic"
+            value={selectedTopic}
+            onChange={e => topicSelection(e.target.value)}
+          >
+            {uniqueTopicList.map((topic) => (
+              <MenuItem value={topic}>{topic}</MenuItem>
+            ))}
+          </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={3}>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="language">Choisir une langue</InputLabel>
+            <Select
+              labelId="language"
+              id="language"
+              onChange={e => languageSelection(e.target.value)}
+              value={selectedLanguage}
+            >
+              {uniqueLanguageList.map((language) => (
+                <MenuItem value={language}>{language}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={3}>
+        </Grid>
+      </Grid>
       <Grid container spacing={3}>
         <Grid item xs={3}>
           <Typography variant="body1" onClick={() => sortByTitle()}>Titre</Typography>
