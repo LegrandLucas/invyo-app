@@ -7,12 +7,12 @@ import Grid from '@material-ui/core/Grid';
 
 const Data = () => {
 
-  // console.log(invyoData.articles.slice(0, 5).map((article) => article))
   const data = invyoData.articles.slice(0, 10)
 
   const [articles, setArticles] = useState([]);
   const [topics, setTopics] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState('');
+  const [selectedLanguage, setSelectedLanguage] = useState('');
 
 
   useEffect(() => {
@@ -38,25 +38,17 @@ const Data = () => {
     setArticles(data)
   };
 
-    const filterByTag = (tag) => {
-      data.filter(function (el) {
-        const selectedData = el.Tags.topic;
-        if (selectedData.indexOf(tag) > -1) {
-          setArticles([el])
-        }
-      });
-    }
-
-    const filterByLanguage = (tag) => {
-      data.filter(function (el) {
-        const selectedData = el.Tags.topic;
-        if (selectedData.indexOf(tag) > -1) {
-          setArticles([el])
-        }
-      });
-    }
 
 
+// Filtering articles by Tags
+  const filterByTag = (tag) => {
+    data.filter(function (el) {
+      const selectedData = el.Tags.topic;
+      if (selectedData.indexOf(tag) > -1) {
+        setArticles([el])
+      }
+    });
+  }
 
   const dataTopics = data.map((article) => article.Tags.topic);
   const newTopics = dataTopics.concat.apply([], dataTopics);
@@ -71,7 +63,32 @@ const Data = () => {
     setSelectedTopic(newTopic);
     filterByTag(newTopic)
   }
+//
 
+// Filtering articles by Languages
+  const filterByLanguage = (Language) => {
+    data.filter(function (el) {
+      const selectedData = el.Language;
+      if (selectedData.indexOf(Language) > -1) {
+        setArticles([el])
+      }
+    });
+  }
+
+  const dataLanguage = data.map((article) => article.Language);
+  const newLanguages = dataLanguage.concat.apply([], dataLanguage);
+
+  const uniqueLanguage = (value, index, self) => {
+    return self.indexOf(value) === index;
+  }
+
+  const uniqueLanguageList = newLanguages.filter(uniqueLanguage);
+
+  const languageSelection = (newLanguage) => {
+    setSelectedLanguage(newLanguage);
+    filterByLanguage(newLanguage)
+  }
+//
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -87,12 +104,16 @@ const Data = () => {
 
   return (
     <div className={classes.topGrid}>
-      <select onChange={e => topicSelection(e.target.value)}
-        value={selectedTopic}>
+      <select onChange={e => topicSelection(e.target.value)} value={selectedTopic}>
       {uniqueTopicList.map((topic) => (
         <option key={topic} value={topic}>{topic}</option>
         ))}
-        </select>
+      </select>
+      <select onChange={e => languageSelection(e.target.value)} value={selectedLanguage}>
+      {uniqueLanguageList.map((language) => (
+        <option key={language} value={language}>{language}</option>
+        ))}
+      </select>
       <Grid container spacing={3}>
         <Grid item xs={3}>
           <Typography variant="body1" onClick={() => sortByTitle()}>Titre</Typography>
