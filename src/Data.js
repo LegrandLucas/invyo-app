@@ -104,9 +104,10 @@ const Data = () => {
 
   return (
     <div className={classes.topGrid}>
+
       <select onChange={e => topicSelection(e.target.value)} value={selectedTopic}>
       {uniqueTopicList.map((topic) => (
-        <option key={topic} value={topic}>{topic}</option>
+          <option key={topic} value={topic}>{topic}</option>
         ))}
       </select>
       <select onChange={e => languageSelection(e.target.value)} value={selectedLanguage}>
