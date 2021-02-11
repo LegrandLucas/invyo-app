@@ -3,6 +3,7 @@ import './App.css';
 import React from 'react';
 import Home from "./Home";
 import Data from "./Data";
+import Data2 from "./Data2";
 import Todo from "./Todo";
 import Navbar from './components/Navbar'
 import Preferences from './components/Preferences'
@@ -42,6 +43,9 @@ const App = () => {
           </Route>
           <Route path="/data">
             <Data />
+          </Route>
+          <Route path="/data2">
+            <Data2 />
           </Route>
           <Route path="/todo">
             <Todo />
